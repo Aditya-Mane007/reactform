@@ -22,7 +22,6 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <FormContextProvider>
       <RouterProvider router={router} />
-      {/* <App /> */}
     </FormContextProvider>
   </StrictMode>
 )
