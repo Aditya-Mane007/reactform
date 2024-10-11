@@ -56,7 +56,6 @@ const FormContextProvider = ({ children }) => {
       city: "",
       zipCode: "",
     })
-    // setStep(1)
   }
 
   const resetSteps = () => {
