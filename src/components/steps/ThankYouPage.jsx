@@ -20,6 +20,9 @@ function ThankYouPage() {
       <Link to="/" className="user-table-link" onClick={resetSteps}>
         Go to Home page
       </Link>
+      <Link to="/userTable" className="user-table-link" onClick={resetSteps}>
+        User Table
+      </Link>
     </div>
   )
 }
