@@ -1,0 +1,310 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.ubuntu-light {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.ubuntu-regular {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ubuntu-medium {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ubuntu-bold {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+  --MarineBlue: hsl(213, 96%, 18%);
+  --PurplishBlue: hsl(243, 100%, 62%);
+  --PastelBlue: hsl(228, 100%, 84%);
+  --LightBlue: hsl(206, 94%, 87%);
+  --StrawberryRed: hsl(354, 84%, 57%);
+  --CoolGray: hsl(231, 11%, 63%);
+  --LightGray: hsl(229, 24%, 87%);
+  --Magnolia: hsl(217, 100%, 97%);
+  --Alabaster: hsl(231, 100%, 99%);
+  --White: hsl(0, 0%, 100%);
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--WHITE);
+  background: var(--LightGray);
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1020px;
+  height: auto;
+  /* min-height: 100vh; */
+  position: relative;
+}
+
+.wrapper .backgroundImage {
+  width: 100%;
+  height: 10.8rem;
+}
+
+.wrapper .backgroundImage picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wrapper .formDiv {
+  width: 90%;
+  height: auto;
+  position: absolute;
+  top: 65%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 15px;
+  background: var(--White);
+}
+
+h1,
+h2 {
+  font-weight: 700;
+  color: var(--MarineBlue);
+}
+
+p {
+  font-size: 1rem;
+  color: var(--CoolGray);
+}
+
+form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.inputDiv {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+
+.inputDiv label {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+.inputDiv input {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 0.8rem;
+  border-radius: 5px;
+  border: 2px solid var(--LightGray);
+  outline: none;
+  /* &:focus {
+    border: 2px solid var(--PurplishBlue);
+  }
+  &:required + .inputError {
+    display: block;
+  } */
+}
+
+form {
+  width: 99%;
+}
+.inputDiv textarea {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0.8rem;
+  border-radius: 5px;
+  border: 1px solid var(--GRAY);
+}
+
+.inputDiv .inputError {
+  margin: 0.2rem 0;
+  visibility: hidden;
+}
+
+.inputDiv .inputError.active {
+  visibility: visible;
+  color: var(--StrawberryRed);
+}
+
+select {
+  display: block;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: var(--LightGray);
+  cursor: pointer;
+  &:hover {
+    color: var(--White);
+    background-color: var(--CoolGray);
+  }
+}
+
+input[type="date"] {
+  width: auto;
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: var(--BLACK);
+  color: var(--WHITE);
+  cursor: pointer;
+  &:hover {
+    background-color: var(--GRAY);
+  }
+}
+
+button {
+  width: auto;
+  padding: 0.5rem 2rem;
+  background: var(--CoolGray);
+  color: var(--White);
+  border-radius: 5px;
+  border: none;
+  float: right;
+  cursor: pointer;
+}
+
+.btns {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-table-link {
+  text-decoration: none;
+  color: var(--CoolGray);
+  margin: 0.5rem 0;
+}
+
+.table {
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+}
+
+table tr th {
+  width: auto;
+  height: auto;
+  border: 1px solid black;
+  padding: 0.5rem;
+}
+
+.tableContainer {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Media Queries */
+@media screen and (min-width: 1020px) {
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+  }
+  .wrapper {
+    width: 60%;
+    height: 30rem;
+    display: flex;
+    background: var(--White);
+    border-radius: 15px;
+  }
+
+  .wrapper .backgroundImage {
+    width: 40%;
+    height: 100%;
+  }
+
+  .wrapper .backgroundImage picture img {
+    width: 100%;
+    border-radius: 15px;
+  }
+
+  .wrapper .formDiv {
+    width: 60%;
+    height: 100%;
+    position: relative;
+    top: 0;
+    background: var(--White);
+  }
+
+  .table {
+    width: 100%;
+    overflow: scroll;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .wrapper {
+    width: 80%;
+    height: 35rem;
+    display: flex;
+    background: var(--White);
+    border-radius: 15px;
+  }
+  .wrapper .backgroundImage {
+    width: 40%;
+    height: 100%;
+  }
+
+  .wrapper .backgroundImage picture img {
+    width: 100%;
+    border-radius: 15px;
+  }
+
+  .wrapper .formDiv {
+    width: 60%;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+  }
+  .wrapper .backgroundImage {
+    width: 100%;
+    height: 15rem;
+  }
+  .wrapper .backgroundImage picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
