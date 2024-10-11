@@ -1,10 +1,9 @@
-import React, { useContext, useEffect } from "react"
-import Input from "./Input"
+import React, { useContext } from "react"
 import Step1 from "./steps/Step1"
 import Step2 from "./steps/Step2"
 import Step3 from "./steps/Step3"
+import ThankYouPage from "./steps/ThankYouPage"
 import { formContext } from "../context/formContext"
-import ThankYouPage from "./steps/ThankYouPage.jsx"
 
 function Form() {
   const { step } = useContext(formContext)

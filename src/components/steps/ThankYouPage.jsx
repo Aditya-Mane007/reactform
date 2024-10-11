@@ -1,6 +1,6 @@
+import { useContext } from "react"
 import { Link } from "react-router-dom"
 import ThankYou from "../../assets/images/icon-thank-you.svg"
-import { useContext } from "react"
 import { formContext } from "../../context/formContext"
 
 function ThankYouPage() {
