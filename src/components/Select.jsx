@@ -1,10 +1,8 @@
-import React from "react"
-
 function Select({ value, onChange, options, error, name }) {
   return (
     <div className="inputDiv">
       <select value={value} onChange={onChange} name={name}>
-        <option value="" selected disabled>
+        <option value="" disabled defaultValue>
           Select {name}
         </option>
         {options.map((item, index) => (
@@ -17,7 +15,7 @@ function Select({ value, onChange, options, error, name }) {
         {error && error}
       </div>
     </div>
-  )
+  );
 }
 
-export default Select
+export default Select;

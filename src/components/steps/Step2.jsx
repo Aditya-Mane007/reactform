@@ -1,26 +1,26 @@
-import React, { useContext, useState } from "react"
-import Input from "../Input"
-import Select from "../Select"
-import { formContext } from "../../context/formContext"
+import React, { useContext, useState } from "react";
+import Input from "../Input";
+import Select from "../Select";
+import { formContext } from "../../context/formContext";
 
 function Step2() {
   const { stepForward, stepBackWard, formData, changeHandler } =
-    useContext(formContext)
-  const options = ["Male", "Female", "Others"]
-  const [error, setErrors] = useState([])
+    useContext(formContext);
+  const options = ["Male", "Female", "Others"];
+  const [error, setErrors] = useState([]);
 
-  const { email, dob, gender, phoneNumber } = formData
+  const { email, dob, gender, phoneNumber } = formData;
 
   const validate = () => {
-    let value
+    let value;
     if (!email) {
       setErrors((prev) => ({
         ...prev,
         email: "Email Address cannot be empty",
-      }))
-      value = false
+      }));
+      value = false;
     } else {
-      value = true
+      value = true;
     }
 
     if (
@@ -30,65 +30,65 @@ function Step2() {
       setErrors((prev) => ({
         ...prev,
         email: "Invalid email address",
-      }))
-      value = false
+      }));
+      value = false;
     } else {
-      value = true
+      value = true;
     }
     if (!phoneNumber) {
       setErrors((prev) => ({
         ...prev,
         phoneNumber: "Phone number cannot be empty",
-      }))
-      value = false
+      }));
+      value = false;
     } else {
-      value = true
+      value = true;
     }
 
     if (phoneNumber && phoneNumber.length !== 10) {
       setErrors((prev) => ({
         ...prev,
         phoneNumber: "Phone number should be 10 digit",
-      }))
-      value = false
+      }));
+      value = false;
     } else {
-      value = true
+      value = true;
     }
     if (!gender) {
       setErrors((prev) => ({
         ...prev,
         gender: "Gender cannot be empty",
-      }))
-      value = false
+      }));
+      value = false;
     } else {
-      value = true
+      value = true;
     }
     if (!dob) {
       setErrors((prev) => ({
         ...prev,
         dob: "DOB cannot be empty",
-      }))
-      value = false
+      }));
+      value = false;
     } else if (dob) {
-      const date1 = new Date().getTime()
-      const date2 = new Date(dob).getTime()
+      const date1 = new Date().getTime();
+      const date2 = new Date(dob).getTime();
 
       if (date2 > date1) {
         setErrors((prev) => ({
           ...prev,
           dob: "DOB Cannot be future date",
-        }))
-        value = false
+        }));
+        value = false;
       }
     } else {
-      value = true
+      value = true;
     }
     setTimeout(() => {
-      setErrors([])
-    }, 2000)
+      setErrors([]);
+    }, 2000);
 
-    return value
-  }
+    return value;
+  };
   return (
     <>
       <Input
@@ -104,7 +104,9 @@ function Step2() {
         name="phoneNumber"
         label="Phone Number"
         placeholder="e.g. +91 9326549507"
-        type="tel"
+        type="text"
+        pattern="[0-9]"
+        maxLength="10"
         value={phoneNumber}
         onChange={changeHandler}
         error={error && error.phoneNumber ? error.phoneNumber : ""}
@@ -135,14 +137,14 @@ function Step2() {
         <button
           type="button"
           onClick={() => {
-            validate() && stepForward()
+            validate() && stepForward();
           }}
         >
           Next
         </button>
       </div>
     </>
-  )
+  );
 }
 
-export default Step2
+export default Step2;

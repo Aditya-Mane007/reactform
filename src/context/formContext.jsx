@@ -1,9 +1,9 @@
-import { createContext, useState } from "react"
+import { createContext, useState } from "react";
 
-export const formContext = createContext()
+export const formContext = createContext();
 
 const FormContextProvider = ({ children }) => {
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(2);
   const [formData, setFormData] = useState({
     firstName: "",
     middleName: "",
@@ -16,33 +16,33 @@ const FormContextProvider = ({ children }) => {
     state: "",
     city: "",
     zipCode: "",
-  })
+  });
   const stepForward = () => {
-    setStep((prev) => prev + 1)
-  }
+    setStep((prev) => prev + 1);
+  };
   const stepBackWard = () => {
-    setStep((prev) => prev - 1)
-  }
+    setStep((prev) => prev - 1);
+  };
 
   const changeHandler = (e) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-    }))
-  }
+    }));
+  };
 
   const storeDataToLocalStroage = (data) => {
     const exitingArray = localStorage.getItem("UserTable")
       ? JSON.parse(localStorage.getItem("UserTable"))
-      : []
-    const arr = [...exitingArray]
+      : [];
+    const arr = [...exitingArray];
 
-    arr.push(data)
+    arr.push(data);
 
-    localStorage.setItem("UserTable", JSON.stringify(arr))
-  }
+    localStorage.setItem("UserTable", JSON.stringify(arr));
+  };
   const submitHandler = () => {
-    storeDataToLocalStroage(formData)
+    storeDataToLocalStroage(formData);
     setFormData({
       firstName: "",
       middleName: "",
@@ -55,12 +55,12 @@ const FormContextProvider = ({ children }) => {
       state: "",
       city: "",
       zipCode: "",
-    })
-  }
+    });
+  };
 
   const resetSteps = () => {
-    setStep(1)
-  }
+    setStep(1);
+  };
 
   const formValues = {
     step,
@@ -70,10 +70,10 @@ const FormContextProvider = ({ children }) => {
     changeHandler,
     submitHandler,
     resetSteps,
-  }
+  };
   return (
     <formContext.Provider value={formValues}>{children}</formContext.Provider>
-  )
-}
+  );
+};
 
-export default FormContextProvider
+export default FormContextProvider;
