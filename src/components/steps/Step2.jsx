@@ -14,7 +14,7 @@ function Step2() {
   const { email, dob, gender, phoneNumber } = formData
 
   const validateEmail = (email) => {
-    const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
+    const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,}$/
 
     return pattern.test(email)
   }
@@ -26,7 +26,7 @@ function Step2() {
     if (!email) {
       newErrors.email = "Email Address cannot be empty"
       isValid = false
-    } else if (!validateEmail(email)) {
+    } else if (validateEmail(email) !== true) {
       newErrors.email = "Invalid email address"
       isValid = false
     }
