@@ -1,94 +1,65 @@
-import React, { useContext, useState } from "react";
-import Input from "../Input";
-import Select from "../Select";
-import { formContext } from "../../context/formContext";
+import React, { useContext, useState } from "react"
+import Input from "../Input"
+import Select from "../Select"
+import { formContext } from "../../context/formContext"
 
 function Step2() {
   const { stepForward, stepBackWard, formData, changeHandler } =
-    useContext(formContext);
-  const options = ["Male", "Female", "Others"];
-  const [error, setErrors] = useState([]);
+    useContext(formContext)
+  const options = ["Male", "Female", "Others"]
+  const [errors, setErrors] = useState()
 
-  const { email, dob, gender, phoneNumber } = formData;
+  console.log(errors)
+
+  const { email, dob, gender, phoneNumber } = formData
+
+  const validateEmail = (email) => {
+    const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/
+
+    return pattern.test(email)
+  }
 
   const validate = () => {
-    let value;
+    const newErrors = {}
+    let isValid = true
+
     if (!email) {
-      setErrors((prev) => ({
-        ...prev,
-        email: "Email Address cannot be empty",
-      }));
-      value = false;
-    } else {
-      value = true;
+      newErrors.email = "Email Address cannot be empty"
+      isValid = false
+    } else if (!validateEmail(email)) {
+      newErrors.email = "Invalid email address"
+      isValid = false
     }
 
-    if (
-      email &&
-      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
-    ) {
-      setErrors((prev) => ({
-        ...prev,
-        email: "Invalid email address",
-      }));
-      value = false;
-    } else {
-      value = true;
-    }
     if (!phoneNumber) {
-      setErrors((prev) => ({
-        ...prev,
-        phoneNumber: "Phone number cannot be empty",
-      }));
-      value = false;
-    } else {
-      value = true;
+      newErrors.phoneNumber = "Phone number cannot be empty"
+      isValid = false
+    } else if (phoneNumber.length !== 10) {
+      newErrors.phoneNumber = "Phone number must be 10 digits"
+      isValid = false
     }
 
-    if (phoneNumber && phoneNumber.length !== 10) {
-      setErrors((prev) => ({
-        ...prev,
-        phoneNumber: "Phone number should be 10 digit",
-      }));
-      value = false;
-    } else {
-      value = true;
-    }
-    if (!gender) {
-      setErrors((prev) => ({
-        ...prev,
-        gender: "Gender cannot be empty",
-      }));
-      value = false;
-    } else {
-      value = true;
-    }
     if (!dob) {
-      setErrors((prev) => ({
-        ...prev,
-        dob: "DOB cannot be empty",
-      }));
-      value = false;
-    } else if (dob) {
-      const date1 = new Date().getTime();
-      const date2 = new Date(dob).getTime();
-
-      if (date2 > date1) {
-        setErrors((prev) => ({
-          ...prev,
-          dob: "DOB Cannot be future date",
-        }));
-        value = false;
-      }
+      newErrors.dob = "Date of Birth cannot be empty"
+      isValid = false
     } else {
-      value = true;
+      const currentDate = new Date()
+      const selectedDate = new Date(dob)
+      if (selectedDate > currentDate) {
+        newErrors.dob = "Date of Birth cannot be a future date"
+        isValid = false
+      }
     }
-    setTimeout(() => {
-      setErrors([]);
-    }, 2000);
 
-    return value;
-  };
+    if (!gender) {
+      newErrors.gender = "Gender cannot be empty"
+      isValid = false
+    }
+
+    setErrors(newErrors)
+    return isValid
+  }
+
   return (
     <>
       <Input
@@ -98,7 +69,7 @@ function Step2() {
         value={email}
         type="email"
         onChange={changeHandler}
-        error={error && error.email ? error.email : ""}
+        error={errors && errors.email ? errors.email : ""}
       />
       <Input
         name="phoneNumber"
@@ -107,9 +78,10 @@ function Step2() {
         type="text"
         pattern="[0-9]"
         maxLength="10"
+        autoComplete="off"
         value={phoneNumber}
         onChange={changeHandler}
-        error={error && error.phoneNumber ? error.phoneNumber : ""}
+        error={errors && errors.phoneNumber ? errors.phoneNumber : ""}
       />
 
       <Select
@@ -117,7 +89,7 @@ function Step2() {
         onChange={changeHandler}
         name="gender"
         value={gender}
-        error={error && error.gender ? error.gender : ""}
+        error={errors && errors.gender ? errors.gender : ""}
       />
 
       <Input
@@ -127,24 +99,19 @@ function Step2() {
         value={dob}
         type="date"
         onChange={changeHandler}
-        error={error && error.dob ? error.dob : ""}
+        error={errors && errors.dob ? errors.dob : ""}
       />
 
       <div className="btns">
         <button className="back" type="button" onClick={() => stepBackWard()}>
           Back
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            validate() && stepForward();
-          }}
-        >
+        <button type="button" onClick={() => validate() && stepForward()}>
           Next
         </button>
       </div>
     </>
-  );
+  )
 }
 
-export default Step2;
+export default Step2

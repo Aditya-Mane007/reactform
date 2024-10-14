@@ -7,45 +7,34 @@ function Step3() {
   const CountryOptions = ["India"]
   const { stepBackWard, stepForward, formData, changeHandler, submitHandler } =
     useContext(formContext)
-  const [error, setErrors] = useState([])
+  const [errors, setErrors] = useState()
 
   const { country, state, city, zipCode } = formData
 
   const validateFields = (e) => {
     e.preventDefault()
+    const newErrors = {}
 
     if (!country) {
-      setErrors((prev) => ({
-        ...prev,
-        country: "Country cannot be empty",
-      }))
+      newErrors.country = "Country cannot be empty"
     }
+
     if (!state) {
-      setErrors((prev) => ({
-        ...prev,
-        state: "State cannot be empty",
-      }))
+      newErrors.state = "State cannot be empty"
     }
     if (!city) {
-      setErrors((prev) => ({
-        ...prev,
-        city: "City cannot be empty",
-      }))
+      newErrors.city = "City cannot be empty"
     }
 
     if (!zipCode) {
-      setErrors((prev) => ({
-        ...prev,
-        zipCode: "Zip code cannot be empty",
-      }))
+      newErrors.zipCode = "Zip code cannot be empty"
     }
-    setTimeout(() => {
-      setErrors([])
-    }, 2000)
 
+    setErrors(newErrors)
     if (country && state && city && zipCode) {
-      stepForward()
+      console.log(country, state, city, zipCode)
       submitHandler()
+      stepForward()
     }
   }
   return (
@@ -55,7 +44,7 @@ function Step3() {
         onChange={changeHandler}
         name="country"
         value={country}
-        error={error && error.country ? error.country : ""}
+        error={errors && errors.country ? errors.country : ""}
       />
 
       <Select
@@ -63,7 +52,7 @@ function Step3() {
         onChange={changeHandler}
         name="state"
         value={state}
-        error={error && error.state ? error.state : ""}
+        error={errors && errors.state ? errors.state : ""}
       />
 
       <Select
@@ -71,7 +60,7 @@ function Step3() {
         onChange={changeHandler}
         name="city"
         value={city}
-        error={error && error.city ? error.city : ""}
+        error={errors && errors.city ? errors.city : ""}
       />
 
       <Select
@@ -79,13 +68,13 @@ function Step3() {
         onChange={changeHandler}
         name="zipCode"
         value={zipCode}
-        error={error && error.zipCode ? error.zipCode : ""}
+        error={errors && errors.zipCode ? errors.zipCode : ""}
       />
       <div className="btns">
         <button className="back" type="button" onClick={() => stepBackWard()}>
           Back
         </button>
-        <button type="submit" onClick={validateFields}>
+        <button type="button" onClick={validateFields}>
           Submit
         </button>
       </div>
