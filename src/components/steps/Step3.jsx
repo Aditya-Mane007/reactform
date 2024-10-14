@@ -32,7 +32,6 @@ function Step3() {
 
     setErrors(newErrors)
     if (country && state && city && zipCode) {
-      console.log(country, state, city, zipCode)
       submitHandler()
       stepForward()
     }

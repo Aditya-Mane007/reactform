@@ -4,35 +4,25 @@ import { formContext } from "../../context/formContext"
 
 function Step1() {
   const { stepForward, formData, changeHandler } = useContext(formContext)
-  const [error, setErrors] = useState([])
+  const [error, setErrors] = useState()
 
   const { firstName, lastName, middleName } = formData
 
   const validate = (e) => {
+    const newErrors = {}
     e.preventDefault()
 
     if (!firstName) {
-      setErrors((prev) => ({
-        ...prev,
-        firstName: "First name cannot be empty",
-      }))
+      newErrors.firstName = "first name cannot be empty"
     }
     if (!middleName) {
-      setErrors((prev) => ({
-        ...prev,
-        middleName: "Middle name cannot be empty",
-      }))
+      newErrors.middleName = "Middle name cannot be empty"
     }
     if (!lastName) {
-      setErrors((prev) => ({
-        ...prev,
-        lastName: "Last name cannot be empty",
-      }))
+      newErrors.lastName = "Last name cannot be empty"
     }
-    // setTimeout(() => {
-    //   setErrors([]);
-    // }, 2000);
 
+    setErrors(newErrors)
     if (firstName && middleName && lastName) {
       stepForward()
     }
